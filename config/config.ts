@@ -1,5 +1,3 @@
-import { error } from "node:console";
-
 function reqEnv(name: string){
     const value = process.env[name];
     if(!value) {
