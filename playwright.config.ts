@@ -2,6 +2,7 @@
 
 import { defineConfig, devices } from '@playwright/test';
 import { config } from './config/config';
+import 'dotenv/config';
 
 /**
  * Read environment variables from file.
@@ -25,15 +26,20 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    ['html', {outputFolder: 'playwright-report'}],
+  ],
+  outputDir: 'screenshots',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
-    baseURL: config.baseUrl
+    trace: 'retain-on-failure',
+    baseURL: config.baseUrl,
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */

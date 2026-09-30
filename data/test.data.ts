@@ -1,3 +1,4 @@
+import 'dotenv/config';
 function reqEnv(name: string) : string {
     const value = process.env[name];
     if(!value) {

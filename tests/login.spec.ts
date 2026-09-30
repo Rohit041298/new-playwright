@@ -1,7 +1,7 @@
 import { test } from '../fixture/baseTest';
 import { data } from '../data/test.data';
 
-test.describe('Login Page', () => {
+test.describe('Login Page',() => {
     test('Verify login page elements are visible', async ({ loginPage }) => {
         await loginPage.page.goto('/');
         await loginPage.headerIsVisible();
